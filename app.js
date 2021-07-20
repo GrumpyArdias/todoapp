@@ -16,5 +16,6 @@ btn.style.fontSize = "19px";
 btn.style.padding = "12px 37px";
 btn.style.textDecoration = "none";
 btn.style.textShadow = btn.innerHTML = "boton de mierda";
+
 // Adding a class
 btn.style.btn.classList.add("boton");
