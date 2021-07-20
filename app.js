@@ -15,7 +15,7 @@ btn.style.fontFamily = "Arial";
 btn.style.fontSize = "19px";
 btn.style.padding = "12px 37px";
 btn.style.textDecoration = "none";
-btn.style.textShadow = btn.innerHTML = "boton de mierda";
+btn.style.textShadow = btn.innerHTML = "New Card";
 
 // Adding a class
 btn.style.btn.classList.add("boton");
