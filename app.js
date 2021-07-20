@@ -17,18 +17,3 @@ btn.style.padding = "12px 37px";
 btn.style.textDecoration = "none";
 btn.style.textShadow = btn.innerHTML = "boton de mierda";
 btn.style.btn.classList.add("boton");
-
-// Adding a class
-
-// 	background:linear-gradient(to bottom, #7892c2 5%, #476e9e 100%); te falta esto
-// 	text-decoration:none;
-// 	text-shadow:0px 1px 0px #283966;
-// }
-// .myButton:hover {
-// 	background:linear-gradient(to bottom, #476e9e 5%, #7892c2 100%);
-// 	background-color:#476e9e;
-// }
-// .myButton:active {
-// 	position:relative;
-// 	top:1px;
-// }
