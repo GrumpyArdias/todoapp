@@ -6,6 +6,7 @@ let btn = document.createElement("button");
 btn.innerHTML = "New";
 root.appendChild(btn);
 btn.classList.add("btn", "btn-primary");
+btn.id = "btntop";
 
 // Card Creation
 
@@ -26,3 +27,4 @@ let savebtn = document.createElement("button");
 card.appendChild(savebtn);
 savebtn.classList.add("btn", "btn-primary");
 savebtn.innerHTML = "G";
+savebtn.id = "savebtn";

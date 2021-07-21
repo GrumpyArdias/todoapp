@@ -1,5 +1,30 @@
 .container {
   max-width: 600px;
-  max-height: 50%;
+  max-height: 300px;
+}
+
+#btntop {
   position: relative;
+  top: 25px;
+  left: 300px;
+}
+.card {
+  position: relative;
+  top: 40px;
+  left: 180px;
+  max-width: 300px;
+  max-height: 150px;
+}
+
+#savebtn {
+  max-width: 50 px;
+  max-height: 25 px;
+  position: relative;
+  top: 5px;
+  left: 30 px;
+}
+
+.form-control {
+  max-width: 300px;
+  max-height: 50px;
 }
