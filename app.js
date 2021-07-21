@@ -1,22 +1,15 @@
-// Button Creation
+// Setting variables
 let root = document.querySelector("#root");
+
+// Button Creation
 let btn = document.createElement("button");
+btn.innerHTML = "New";
 root.appendChild(btn);
-btn.type = "button";
-// Style
-btn.style.boxShadow = "0px 0px 0px 2px #9fb4f2";
-btn.style.backgroundColor = "#7892c2";
-btn.style.borderRadius = "10px";
-btn.style.border = "1px solid #4e6096";
-btn.style.display = "inline-block";
-btn.style.cursor = "pointer";
-btn.style.color = "#ffffff";
-btn.style.fontFamily = "Arial";
-btn.style.fontSize = "19px";
-btn.style.padding = "12px 37px";
-btn.style.textDecoration = "none";
-btn.style.textShadow = "0px 1px 0px #283966";
-btn.innerHTML = "boton de mierda";
+btn.classList.add("btn", "btn-primary");
 
 // Adding a class
-btn.classList.add("boton");
+//btn.classList.add("boton");
+
+/* <button type="button" class="btn btn-primary">
+  Primary
+</button>; */
