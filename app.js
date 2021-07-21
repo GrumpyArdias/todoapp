@@ -7,9 +7,17 @@ btn.innerHTML = "New";
 root.appendChild(btn);
 btn.classList.add("btn", "btn-primary");
 
-// Adding a class
-//btn.classList.add("boton");
+// Card Creation
 
-/* <button type="button" class="btn btn-primary">
-  Primary
-</button>; */
+let card = document.createElement("card");
+root.appendChild(card);
+card.classList.add("card", "card");
+
+// Card body
+
+let cardbody = document.createElement("card-body");
+card.appendChild(cardbody);
+cardbody.classList.add("cardbody", "card-body");
+cardbody.innerHTML = "test";
+
+// Card text
