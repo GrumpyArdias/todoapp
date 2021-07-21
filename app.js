@@ -9,15 +9,20 @@ btn.classList.add("btn", "btn-primary");
 
 // Card Creation
 
-let card = document.createElement("card");
+let card = document.createElement("div");
 root.appendChild(card);
-card.classList.add("card", "card");
-
-// Card body
-
-let cardbody = document.createElement("card-body");
-card.appendChild(cardbody);
-cardbody.classList.add("cardbody", "card-body");
-cardbody.innerHTML = "test";
+card.classList.add("card");
 
 // Card text
+
+let cardtext = document.createElement("form");
+let cardimput = document.createElement("input");
+card.appendChild(cardtext);
+cardtext.appendChild(cardimput);
+cardtext.classList.add("form-control");
+
+// Card Save button
+let savebtn = document.createElement("button");
+card.appendChild(savebtn);
+savebtn.classList.add("btn", "btn-primary");
+savebtn.innerHTML = "G";
