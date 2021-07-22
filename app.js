@@ -3,16 +3,20 @@ let root = document.querySelector("#root");
 
 // Button Creation
 let btn = document.createElement("button");
-btn.innerHTML = "New";
+btn.innerHTML = "Add";
 root.appendChild(btn);
 btn.classList.add("btn", "btn-primary");
 btn.id = "btntop";
 
 // Card Creation
-
 let card = document.createElement("div");
 root.appendChild(card);
 card.classList.add("card");
+
+function showcard() {
+  card.style.display = "block";
+}
+btn.addEventListener("click", showcard);
 
 // Card text
 
@@ -28,3 +32,5 @@ card.appendChild(savebtn);
 savebtn.classList.add("btn", "btn-primary");
 savebtn.innerHTML = "G";
 savebtn.id = "savebtn";
+
+// Logic star
