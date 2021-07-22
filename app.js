@@ -1,48 +1,40 @@
 // Setting variables
-let root = document.querySelector("#root");
+const root = document.querySelector("#root");
 
 // Button Creation
 let btn = document.createElement("button");
 btn.innerHTML = "Add";
-root.appendChild(btn);
 btn.classList.add("btn", "btn-primary");
-btn.id = "btntop";
 
 // Card Creation
-let card = document.createElement("div");
-root.appendChild(card);
-card.classList.add("card");
+function cardFactory() {
+  const card = document.createElement("div");
+  card.classList.add("card", "p-3", "my-3");
 
-function showcard() {
-  card.style.display = "block";
-}
-btn.addEventListener("click", showcard);
+  const flexDiv = document.createElement("div");
+  flexDiv.classList.add("d-flex");
 
-// Card text
+  // Card text
 
-let cardtext = document.createElement("form");
-let cardimput = document.createElement("input");
-card.appendChild(cardtext);
-cardtext.appendChild(cardimput);
-cardtext.classList.add("form-control");
+  const input = document.createElement("input");
+  input.classList.add("form-control", "mx-2");
+  console.log(input);
 
-// Card Save button
-let savebtn = document.createElement("button");
-card.appendChild(savebtn);
-savebtn.classList.add("btn", "btn-primary");
-savebtn.innerHTML = "G";
-savebtn.id = "savebtn";
+  // Card Save button
+  const saveBtn = document.createElement("button");
+  saveBtn.classList.add("btn", "btn-primary");
+  saveBtn.innerHTML = "G";
 
-function saved() {
-  let newcard = document.createElement("div");
-  let newcardbody = document.createElement("div");
-  let savetext = cardimput.value;
-  root.appendChild(newcard);
-  newcard.appendChild(newcardbody);
-  newcard.classList.add("card");
-  newcardbody.classList.add("card-body");
-  newcard.style.display = "block";
-  newcardbody.innerHTML = savetext;
+  card.appendChild(flexDiv);
+  flexDiv.appendChild(input);
+  flexDiv.appendChild(saveBtn);
+  root.appendChild(card);
+
+  /// Cuando clicke el botón de guardar, el card debe volverse readonly, y toggleable (done/not-done)
+
+  function makeFinalTodo() {}
+  saveBtn.addEventListener("click", function () {});
 }
 
-savebtn.addEventListener("click", saved);
+btn.addEventListener("click", cardFactory);
+root.appendChild(btn);
