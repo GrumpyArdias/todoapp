@@ -41,7 +41,8 @@ function saved() {
   newcard.appendChild(newcardbody);
   newcard.classList.add("card");
   newcardbody.classList.add("card-body");
-  sa;
+  newcard.style.display = "block";
+  newcardbody.innerHTML = savetext;
 }
 
 savebtn.addEventListener("click", saved);

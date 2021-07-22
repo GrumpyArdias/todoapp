@@ -22,10 +22,20 @@
   max-height: 25 px;
   position: relative;
   top: 5px;
-  left: 30 px;
+  margin-bottom: 10px;
 }
 
 .form-control {
   max-width: 300px;
   max-height: 50px;
+}
+
+.newcard {
+  position: relative;
+  top: 40px;
+  left: 180px;
+  max-width: 300px;
+  max-height: 150px;
+  display: block;
+  padding-top: 50px;
 }
