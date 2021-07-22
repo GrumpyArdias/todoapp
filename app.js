@@ -33,4 +33,15 @@ savebtn.classList.add("btn", "btn-primary");
 savebtn.innerHTML = "G";
 savebtn.id = "savebtn";
 
-// Logic star
+function saved() {
+  let newcard = document.createElement("div");
+  let newcardbody = document.createElement("div");
+  let savetext = cardimput.value;
+  root.appendChild(newcard);
+  newcard.appendChild(newcardbody);
+  newcard.classList.add("card");
+  newcardbody.classList.add("card-body");
+  sa;
+}
+
+savebtn.addEventListener("click", saved);
