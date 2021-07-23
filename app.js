@@ -34,19 +34,29 @@ function cardFactory() {
 
   function makeFinalTodo() {
     let innerText = input.value;
-    if (input.value.length > 0) {
-      card.removeChild(flexDiv);
-      card.innerHTML = innerText;
+    if (innerText.length > 0) {
+      flexDiv.removeChild(input);
+      flexDiv.removeChild(saveBtn);
+
       const checkBox = document.createElement("input");
       checkBox.classList.add("form-check-input", "mx-2");
+      checkBox.type = "checkbox";
+      flexDiv.appendChild(checkBox);
 
-      function check() {
-        innerText = innerText.strike();
-        card.innerHTML = innerText;
+      const text = document.createElement("p");
+      text.innerHTML = innerText;
+      flexDiv.appendChild(text);
+
+      function setDone() {
+        if (checkBox.checked == true) {
+          innerText = innerText.strike();
+          text.innerHTML = innerText;
+        } else {
+          innerText = input.value;
+          text.innerHTML = innerText;
+        }
       }
-      checkBox.addEventListener("click", check);
-
-      card.appendChild(checkBox);
+      checkBox.addEventListener("click", setDone);
     } else {
       return;
     }
