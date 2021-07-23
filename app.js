@@ -32,8 +32,12 @@ function cardFactory() {
 
   /// Cuando clicke el botón de guardar, el card debe volverse readonly, y toggleable (done/not-done)
 
-  function makeFinalTodo() {}
-  saveBtn.addEventListener("click", function () {});
+  function makeFinalTodo() {
+    flexDiv.removeChild(input, saveBtn);
+    flexDiv.innerHTML = input.value;
+  }
+
+  saveBtn.addEventListener("click", makeFinalTodo);
 }
 
 btn.addEventListener("click", cardFactory);
