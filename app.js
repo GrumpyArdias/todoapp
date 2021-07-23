@@ -34,7 +34,18 @@ function cardFactory() {
 
   function makeFinalTodo() {
     flexDiv.removeChild(input, saveBtn);
-    flexDiv.innerHTML = input.value;
+    let innerText = input.value;
+    flexDiv.innerHTML = innerText;
+    const checkBox = document.createElement("imput");
+    checkBox.classList.add("form-check-input", "mx-2");
+
+    function check() {
+      innerText = innerText.strike();
+      flexDiv.innerHTML = innerText;
+    }
+    checkBox.addEventListener("click", check);
+
+    flexDiv.appendChild(checkBox);
   }
 
   saveBtn.addEventListener("click", makeFinalTodo);
