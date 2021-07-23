@@ -35,19 +35,18 @@ function cardFactory() {
   function makeFinalTodo() {
     let innerText = input.value;
     if (input.value.length > 0) {
-      flexDiv.removeChild(input, saveBtn);
-
-      flexDiv.innerHTML = innerText;
+      card.removeChild(flexDiv);
+      card.innerHTML = innerText;
       const checkBox = document.createElement("input");
       checkBox.classList.add("form-check-input", "mx-2");
 
       function check() {
         innerText = innerText.strike();
-        flexDiv.innerHTML = innerText;
+        card.innerHTML = innerText;
       }
       checkBox.addEventListener("click", check);
 
-      flexDiv.appendChild(checkBox);
+      card.appendChild(checkBox);
     } else {
       return;
     }
