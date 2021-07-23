@@ -36,7 +36,7 @@ function cardFactory() {
     flexDiv.removeChild(input, saveBtn);
     let innerText = input.value;
     flexDiv.innerHTML = innerText;
-    const checkBox = document.createElement("imput");
+    const checkBox = document.createElement("input");
     checkBox.classList.add("form-check-input", "mx-2");
 
     function check() {
