@@ -33,19 +33,24 @@ function cardFactory() {
   /// Cuando clicke el botón de guardar, el card debe volverse readonly, y toggleable (done/not-done)
 
   function makeFinalTodo() {
-    flexDiv.removeChild(input, saveBtn);
     let innerText = input.value;
-    flexDiv.innerHTML = innerText;
-    const checkBox = document.createElement("input");
-    checkBox.classList.add("form-check-input", "mx-2");
+    if (input.value.length > 0) {
+      flexDiv.removeChild(input, saveBtn);
 
-    function check() {
-      innerText = innerText.strike();
       flexDiv.innerHTML = innerText;
-    }
-    checkBox.addEventListener("click", check);
+      const checkBox = document.createElement("input");
+      checkBox.classList.add("form-check-input", "mx-2");
 
-    flexDiv.appendChild(checkBox);
+      function check() {
+        innerText = innerText.strike();
+        flexDiv.innerHTML = innerText;
+      }
+      checkBox.addEventListener("click", check);
+
+      flexDiv.appendChild(checkBox);
+    } else {
+      return;
+    }
   }
 
   saveBtn.addEventListener("click", makeFinalTodo);
