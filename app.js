@@ -1,4 +1,6 @@
 // Setting variables
+const body = document.querySelector("body");
+body.style.backgroundColor = "#F4F5F9";
 const root = document.querySelector("#root");
 
 // Button Creation
@@ -53,8 +55,10 @@ function cardFactory() {
     function setDone() {
       if (checkBox.checked) {
         todoSpan.className = "text-decoration-line-through";
+        card.style.opacity = 0.3;
       } else {
         todoSpan.className = "text-decoration-none";
+        card.style.opacity = 1;
       }
     }
     checkBox.addEventListener("click", setDone);
