@@ -33,33 +33,31 @@ function cardFactory() {
   /// Cuando clicke el botón de guardar, el card debe volverse readonly, y toggleable (done/not-done)
 
   function makeFinalTodo() {
-    let innerText = input.value;
-    if (innerText.length > 0) {
-      flexDiv.removeChild(input);
-      flexDiv.removeChild(saveBtn);
+    const todoText = input.value.trim();
 
-      const checkBox = document.createElement("input");
-      checkBox.classList.add("form-check-input", "mx-2");
-      checkBox.type = "checkbox";
-      flexDiv.appendChild(checkBox);
+    if (todoText.length < 1) return;
 
-      const text = document.createElement("p");
-      text.innerHTML = innerText;
-      flexDiv.appendChild(text);
+    flexDiv.removeChild(input);
+    flexDiv.removeChild(saveBtn);
 
-      function setDone() {
-        if (checkBox.checked == true) {
-          innerText = innerText.strike();
-          text.innerHTML = innerText;
-        } else {
-          innerText = input.value;
-          text.innerHTML = innerText;
-        }
+    const checkBox = document.createElement("input");
+    checkBox.classList.add("form-check-input", "mx-2");
+    checkBox.type = "checkbox";
+    flexDiv.appendChild(checkBox);
+
+    const todoSpan = document.createElement("span");
+
+    todoSpan.innerHTML = todoText;
+    flexDiv.appendChild(todoSpan);
+
+    function setDone() {
+      if (checkBox.checked) {
+        todoSpan.className = "text-decoration-line-through";
+      } else {
+        todoSpan.className = "text-decoration-none";
       }
-      checkBox.addEventListener("click", setDone);
-    } else {
-      return;
     }
+    checkBox.addEventListener("click", setDone);
   }
 
   saveBtn.addEventListener("click", makeFinalTodo);
