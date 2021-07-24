@@ -24,8 +24,7 @@ function cardFactory() {
 
   // Card Save button
   const saveBtn = document.createElement("button");
-  saveBtn.classList.add("btn", "btn-primary");
-  saveBtn.innerHTML = "G";
+  saveBtn.classList.add("btn", "btn-primary", "fas", "fa-save");
 
   card.appendChild(flexDiv);
   flexDiv.appendChild(input);

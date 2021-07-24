@@ -4,7 +4,7 @@ App para realizar to Do
 
 Next implementations:
 
-Cambiar G por Floppy Disk (libreria de iconos, font-awesome) <- libreria de iconos
+Cambiar G por Floppy Disk (libreria de iconos, font-awesome) <- libreria de iconos (DONE)
 
 - Fondo grisecito (DONE), y cards done, medio transparentitos (done)
 
