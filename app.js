@@ -50,17 +50,52 @@ function cardFactory() {
 
     todoSpan.innerHTML = todoText;
     flexDiv.appendChild(todoSpan);
-
+    // funcion para tachar el texto
     function setDone() {
       if (checkBox.checked) {
         todoSpan.className = "text-decoration-line-through";
         card.style.opacity = 0.3;
+        todoSpan.contentEditable = "false";
       } else {
         todoSpan.className = "text-decoration-none";
         card.style.opacity = 1;
       }
     }
     checkBox.addEventListener("click", setDone);
+    // funcion para editar texto
+
+    const editBtn = document.createElement("button");
+    editBtn.classList.add(
+      "btn",
+      "btn-info",
+      "btn-sm",
+      "mx-2",
+      "fas",
+      "fa-edit"
+    );
+    flexDiv.appendChild(editBtn);
+
+    function edit() {
+      todoSpan.contentEditable = "true";
+    }
+    editBtn.addEventListener("click", edit);
+
+    // funcion para borrar card
+    const deleteCardBtn = document.createElement("button");
+    deleteCardBtn.classList.add(
+      "btn",
+      "btn-danger",
+      "btn-sm",
+      "mx-2",
+      "fas",
+      "fa-trash"
+    );
+    flexDiv.appendChild(deleteCardBtn);
+
+    function deleteCard() {
+      root.removeChild(card);
+    }
+    deleteCardBtn.addEventListener("click", deleteCard);
   }
 
   saveBtn.addEventListener("click", makeFinalTodo);

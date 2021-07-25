@@ -9,10 +9,10 @@ Cambiar G por Floppy Disk (libreria de iconos, font-awesome) <- libreria de icon
 - Fondo grisecito (DONE), y cards done, medio transparentitos (done)
 
 - Poder editar cards:
-  - Esquina superior derecha icono lapicito
+  - Esquina superior derecha icono lapicito (in progress)
 - Poder borrar cards:
 
-  - Esquina superior derecha icono papelera rojito
+  - Esquina superior derecha icono papelera rojito (done)
 
 - Validación
 
