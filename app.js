@@ -12,103 +12,72 @@ btn.classList.add("btn", "btn-primary");
 function cardFactory() {
   const card = document.createElement("div");
   card.classList.add("card", "p-3", "my-3");
-
-  const flexDiv = document.createElement("div");
-  flexDiv.classList.add("d-flex");
-
-  // Card text
-
+  const alignerContainerDiv = document.createElement("div");
+  alignerContainerDiv.classList.add("d-flex");
   const input = document.createElement("input");
   input.classList.add("form-control", "mx-2");
-  console.log(input);
-
-  // Card Save button
   const saveBtn = document.createElement("button");
   saveBtn.classList.add("btn", "btn-primary", "fas", "fa-save");
 
-  card.appendChild(flexDiv);
-  flexDiv.appendChild(input);
-  flexDiv.appendChild(saveBtn);
+  card.appendChild(alignerContainerDiv);
+  alignerContainerDiv.appendChild(input);
+  alignerContainerDiv.appendChild(saveBtn);
   root.appendChild(card);
 
-  /// Cuando clicke el botón de guardar, el card debe volverse readonly, y toggleable (done/not-done)
+  const checkBox = document.createElement("input");
+  checkBox.classList.add("form-check-input", "mx-2");
+  checkBox.type = "checkbox";
+
+  const todoSpan = document.createElement("span");
+  todoSpan.classList.add("w-100");
+
+  const editBtn = document.createElement("button");
+  editBtn.classList.add("btn", "btn-outline-info", "mx-1", "fas", "fa-edit");
+
+  const deleteCardBtn = document.createElement("button");
+  deleteCardBtn.classList.add("btn", "btn-danger", "mx-1", "fas", "fa-trash");
+
+  function makeDraftTodo() {
+    alignerContainerDiv.removeChild(checkBox);
+    alignerContainerDiv.removeChild(todoSpan);
+    alignerContainerDiv.removeChild(editBtn);
+    alignerContainerDiv.removeChild(deleteCardBtn);
+
+    alignerContainerDiv.appendChild(input);
+    alignerContainerDiv.appendChild(saveBtn);
+    alignerContainerDiv.appendChild(deleteCardBtn);
+  }
 
   function makeFinalTodo() {
     const todoText = input.value.trim();
-
     if (todoText.length < 1) return;
 
-    flexDiv.removeChild(input);
-    flexDiv.removeChild(saveBtn);
-
-    const checkBox = document.createElement("input");
-    checkBox.classList.add("form-check-input", "mx-2");
-    checkBox.type = "checkbox";
-    flexDiv.appendChild(checkBox);
-
-    const todoSpan = document.createElement("span");
+    alignerContainerDiv.removeChild(input);
+    alignerContainerDiv.removeChild(saveBtn);
 
     todoSpan.innerHTML = todoText;
-    flexDiv.appendChild(todoSpan);
-    // funcion para tachar el texto
+
+    alignerContainerDiv.appendChild(checkBox);
+    alignerContainerDiv.appendChild(todoSpan);
+    alignerContainerDiv.appendChild(editBtn);
+    alignerContainerDiv.appendChild(deleteCardBtn);
+
     function setDone() {
       if (checkBox.checked) {
-        todoSpan.className = "text-decoration-line-through";
+        todoSpan.classList.add("text-decoration-line-through");
+        todoSpan.classList.remove("text-decoration-none");
         card.style.opacity = 0.3;
         todoSpan.contentEditable = "false";
       } else {
-        todoSpan.className = "text-decoration-none";
+        todoSpan.classList.remove("text-decoration-line-through");
+        todoSpan.classList.add("text-decoration-none");
         card.style.opacity = 1;
       }
     }
     checkBox.addEventListener("click", setDone);
-    // funcion para editar texto
-
-    const editBtn = document.createElement("button");
-    editBtn.classList.add(
-      "btn",
-      "btn-info",
-      "btn-sm",
-      "mx-2",
-      "fas",
-      "fa-edit"
-    );
-    flexDiv.appendChild(editBtn);
-
-    function edit() {
-      todoSpan.contentEditable = "true";
-
-      // funcion para guardar la edicion del editado
-      const saveEditBtn = document.createElement("button");
-      saveEditBtn.classList.add(
-        "btn",
-        "btn-info",
-        "btn-sm",
-        "mx-2",
-        "fas",
-        "fa-save"
-      );
-      flexDiv.appendChild(saveEditBtn);
-      flexDiv.replaceChild(saveEditBtn, editBtn);
-
-      function saveEdit() {
-        todoSpan.contentEditable = "false";
-      }
-      saveEditBtn.addEventListener("click", saveEdit);
-    }
-    editBtn.addEventListener("click", edit);
+    editBtn.addEventListener("click", makeDraftTodo);
 
     // funcion para borrar card
-    const deleteCardBtn = document.createElement("button");
-    deleteCardBtn.classList.add(
-      "btn",
-      "btn-danger",
-      "btn-sm",
-      "mx-2",
-      "fas",
-      "fa-trash"
-    );
-    flexDiv.appendChild(deleteCardBtn);
 
     function deleteCard() {
       root.removeChild(card);

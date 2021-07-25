@@ -4,19 +4,7 @@ App para realizar to Do
 
 Next implementations:
 
-Cambiar G por Floppy Disk (libreria de iconos, font-awesome) <- libreria de iconos (DONE)
-
-- Fondo grisecito (DONE), y cards done, medio transparentitos (done)
-
-- Poder editar cards:
-  - Esquina superior derecha icono lapicito (in progress)
-- Poder borrar cards:
-
-  - Esquina superior derecha icono papelera rojito (done)
-
-- Validación
-
-  - El botón esté disabled y se vea transparentito, hasta que no cumpla la condición
+- El botón esté disabled y se vea transparentito, hasta que no cumpla la condición - Primero, interaccion escribir (revisar) eventlisener al teclado (tipo onchange)
 
 - Persistencia, en memoria fase 1, y en el navegor 2
 
