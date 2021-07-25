@@ -77,6 +77,24 @@ function cardFactory() {
 
     function edit() {
       todoSpan.contentEditable = "true";
+
+      // funcion para guardar la edicion del editado
+      const saveEditBtn = document.createElement("button");
+      saveEditBtn.classList.add(
+        "btn",
+        "btn-info",
+        "btn-sm",
+        "mx-2",
+        "fas",
+        "fa-save"
+      );
+      flexDiv.appendChild(saveEditBtn);
+      flexDiv.replaceChild(saveEditBtn, editBtn);
+
+      function saveEdit() {
+        todoSpan.contentEditable = "false";
+      }
+      saveEditBtn.addEventListener("click", saveEdit);
     }
     editBtn.addEventListener("click", edit);
 
