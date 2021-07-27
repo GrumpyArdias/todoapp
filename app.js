@@ -19,13 +19,12 @@ function cardFactory() {
   const saveBtn = document.createElement("button");
   saveBtn.classList.add("btn", "btn-primary", "fas", "fa-save");
 
+  saveBtn.disabled = true;
+
   card.appendChild(alignerContainerDiv);
   alignerContainerDiv.appendChild(input);
   alignerContainerDiv.appendChild(saveBtn);
   root.appendChild(card);
-
-  saveBtn.disabled = true;
-  saveBtn.style.opacity = 0.3;
 
   const checkBox = document.createElement("input");
   checkBox.classList.add("form-check-input", "mx-2");
@@ -52,49 +51,48 @@ function cardFactory() {
   }
 
   input.addEventListener("input", function () {
-    saveBtn.disabled = false;
-    saveBtn.style.opacity = 1;
-
-    function makeFinalTodo() {
-      const todoText = input.value.trim();
-
-      if (todoText.length < 1) return;
-
-      alignerContainerDiv.removeChild(input);
-      alignerContainerDiv.removeChild(saveBtn);
-
-      todoSpan.innerHTML = todoText;
-
-      alignerContainerDiv.appendChild(checkBox);
-      alignerContainerDiv.appendChild(todoSpan);
-      alignerContainerDiv.appendChild(editBtn);
-      alignerContainerDiv.appendChild(deleteCardBtn);
-
-      function setDone() {
-        if (checkBox.checked) {
-          todoSpan.classList.add("text-decoration-line-through");
-          todoSpan.classList.remove("text-decoration-none");
-          card.style.opacity = 0.3;
-          todoSpan.contentEditable = "false";
-        } else {
-          todoSpan.classList.remove("text-decoration-line-through");
-          todoSpan.classList.add("text-decoration-none");
-          card.style.opacity = 1;
-        }
-      }
-      checkBox.addEventListener("click", setDone);
-      editBtn.addEventListener("click", makeDraftTodo);
-
-      // funcion para borrar card
-
-      function deleteCard() {
-        root.removeChild(card);
-      }
-      deleteCardBtn.addEventListener("click", deleteCard);
+    if (input.value.trim().length <= 0) {
+      saveBtn.disabled = true;
+    } else {
+      saveBtn.disabled = false;
     }
-
-    saveBtn.addEventListener("click", makeFinalTodo);
   });
+
+  function makeFinalTodo() {
+    alignerContainerDiv.removeChild(input);
+    alignerContainerDiv.removeChild(saveBtn);
+
+    todoSpan.innerHTML = input.value.trim();
+
+    alignerContainerDiv.appendChild(checkBox);
+    alignerContainerDiv.appendChild(todoSpan);
+    alignerContainerDiv.appendChild(editBtn);
+    alignerContainerDiv.appendChild(deleteCardBtn);
+
+    function setDone() {
+      if (checkBox.checked) {
+        todoSpan.classList.add("text-decoration-line-through");
+        todoSpan.classList.remove("text-decoration-none");
+        card.style.opacity = 0.3;
+        todoSpan.contentEditable = "false";
+      } else {
+        todoSpan.classList.remove("text-decoration-line-through");
+        todoSpan.classList.add("text-decoration-none");
+        card.style.opacity = 1;
+      }
+    }
+    checkBox.addEventListener("click", setDone);
+    editBtn.addEventListener("click", makeDraftTodo);
+
+    // funcion para borrar card
+
+    function deleteCard() {
+      root.removeChild(card);
+    }
+    deleteCardBtn.addEventListener("click", deleteCard);
+  }
+
+  saveBtn.addEventListener("click", makeFinalTodo);
 }
 
 btn.addEventListener("click", cardFactory);
