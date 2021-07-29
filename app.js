@@ -9,7 +9,9 @@ btn.innerHTML = "Add";
 btn.classList.add("btn", "btn-primary");
 
 // Card Creation
-function cardFactory() {
+function todoFactory() {
+  const todoId = addTodo();
+
   const card = document.createElement("div");
   card.classList.add("card", "p-3", "my-3");
   const alignerContainerDiv = document.createElement("div");
@@ -87,6 +89,7 @@ function cardFactory() {
     // funcion para borrar card
 
     function deleteCard() {
+      deleteTodo(todoId);
       root.removeChild(card);
     }
     deleteCardBtn.addEventListener("click", deleteCard);
@@ -95,5 +98,5 @@ function cardFactory() {
   saveBtn.addEventListener("click", makeFinalTodo);
 }
 
-btn.addEventListener("click", cardFactory);
+btn.addEventListener("click", todoFactory);
 root.appendChild(btn);
