@@ -71,21 +71,25 @@ function todoFactory() {
     alignerContainerDiv.appendChild(editBtn);
     alignerContainerDiv.appendChild(deleteCardBtn);
 
+    //updateTodo.disabled;
+
     function setDone() {
       if (checkBox.checked) {
         todoSpan.classList.add("text-decoration-line-through");
         todoSpan.classList.remove("text-decoration-none");
         card.style.opacity = 0.3;
+
         todoSpan.contentEditable = "false";
       } else {
         todoSpan.classList.remove("text-decoration-line-through");
         todoSpan.classList.add("text-decoration-none");
         card.style.opacity = 1;
       }
+      updateTodo(todoId, input.value.trim(), checkBox.checked);
     }
     checkBox.addEventListener("click", setDone);
     editBtn.addEventListener("click", makeDraftTodo);
-
+    updateTodo(todoId, input.value.trim(), checkBox.checked);
     // funcion para borrar card
 
     function deleteCard() {
@@ -94,7 +98,6 @@ function todoFactory() {
     }
     deleteCardBtn.addEventListener("click", deleteCard);
   }
-
   saveBtn.addEventListener("click", makeFinalTodo);
 }
 

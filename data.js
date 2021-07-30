@@ -31,5 +31,12 @@ function deleteTodo(id) {
 }
 
 function updateTodo(id, text, done) {
-  // implementation
+  for (let i = 0; i !== db.length; i++) {
+    if (db[i].id === id) {
+      db[i].text = text;
+      db[i].done = done;
+    }
+  }
+
+  getTodos();
 }
