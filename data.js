@@ -40,8 +40,8 @@ function updateTodo(id, text, done) {
       db[i].text = text;
       db[i].done = done;
     }
-    localStorage.setItem("db", JSON.stringify(db));
   }
+  localStorage.setItem("db", JSON.stringify(db));
 
   getTodos();
 }
