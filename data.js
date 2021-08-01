@@ -9,13 +9,17 @@ let db = [];
 let idCount = 0;
 
 function getTodos() {
+  let getDb = JSON.parse(localStorage.getItem("db"));
   console.log(db);
+
+  return getDb;
 }
 
 function addTodo() {
   idCount++;
 
   db.push({ id: idCount, text: "", done: false });
+  localStorage.setItem("db", JSON.stringify(db));
 
   getTodos();
 
@@ -36,6 +40,7 @@ function updateTodo(id, text, done) {
       db[i].text = text;
       db[i].done = done;
     }
+    localStorage.setItem("db", JSON.stringify(db));
   }
 
   getTodos();
