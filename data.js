@@ -9,10 +9,9 @@ let db = [];
 let idCount = 0;
 
 function getTodos() {
-  let getDb = JSON.parse(localStorage.getItem("db"));
-  console.log(db);
-
-  return getDb;
+  const storedDb = JSON.parse(localStorage.getItem("db"));
+  if (!storedDb) return [];
+  return storedDb;
 }
 
 function addTodo() {
@@ -21,15 +20,11 @@ function addTodo() {
   db.push({ id: idCount, text: "", done: false });
   localStorage.setItem("db", JSON.stringify(db));
 
-  getTodos();
-
   return idCount;
 }
 
 function deleteTodo(id) {
   db = db.filter((todo) => todo.id !== id);
-
-  getTodos();
 
   return true;
 }
@@ -42,6 +37,4 @@ function updateTodo(id, text, done) {
     }
   }
   localStorage.setItem("db", JSON.stringify(db));
-
-  getTodos();
 }
