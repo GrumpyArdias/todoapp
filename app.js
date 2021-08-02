@@ -9,24 +9,22 @@ window.addEventListener("load", function () {
   btn.innerHTML = "Add";
   btn.classList.add("btn", "btn-primary");
 
-  // load card stored in db
-  let savedDbArray = getTodos();
-  if (savedDbArray.length != 0) {
-    for (i = 0; i < savedDbArray.length; i++) {
-      todoFactory(savedDbArray.id, savedDbArray.text, savedDbArray.done);
-    }
-  }
+  const todoContainer = document.createElement("div");
 
   // Card Creation
-  function todoFactory(id, text, done) {
-    let todoId = addTodo();
-
+  function todoFactory(todoId, text, done) {
     const card = document.createElement("div");
     card.classList.add("card", "p-3", "my-3");
+
     const alignerContainerDiv = document.createElement("div");
     alignerContainerDiv.classList.add("d-flex");
+
     const input = document.createElement("input");
     input.classList.add("form-control", "mx-2");
+    if (text) {
+      input.value = text;
+    }
+
     const saveBtn = document.createElement("button");
     saveBtn.classList.add("btn", "btn-primary", "fas", "fa-save");
 
@@ -35,7 +33,7 @@ window.addEventListener("load", function () {
     card.appendChild(alignerContainerDiv);
     alignerContainerDiv.appendChild(input);
     alignerContainerDiv.appendChild(saveBtn);
-    root.appendChild(card);
+    todoContainer.prepend(card);
 
     const checkBox = document.createElement("input");
     checkBox.classList.add("form-check-input", "mx-2");
@@ -50,9 +48,16 @@ window.addEventListener("load", function () {
     const deleteCardBtn = document.createElement("button");
     deleteCardBtn.classList.add("btn", "btn-danger", "mx-1", "fas", "fa-trash");
 
-    todoId = id;
-    input.innerHTML = text;
-    checkBox.checked = done;
+    if (text) {
+      makeFinalTodo(true);
+    }
+
+    if (done) {
+      checkBox.checked = true;
+      todoSpan.classList.add("text-decoration-line-through");
+      todoSpan.classList.remove("text-decoration-none");
+      card.style.opacity = 0.3;
+    }
 
     function makeDraftTodo() {
       alignerContainerDiv.removeChild(checkBox);
@@ -64,7 +69,6 @@ window.addEventListener("load", function () {
       alignerContainerDiv.appendChild(saveBtn);
       alignerContainerDiv.appendChild(deleteCardBtn);
     }
-
     input.addEventListener("input", function () {
       if (input.value.trim().length <= 0) {
         saveBtn.disabled = true;
@@ -73,7 +77,7 @@ window.addEventListener("load", function () {
       }
     });
 
-    function makeFinalTodo() {
+    function makeFinalTodo(initial = false) {
       alignerContainerDiv.removeChild(input);
       alignerContainerDiv.removeChild(saveBtn);
 
@@ -91,29 +95,52 @@ window.addEventListener("load", function () {
           todoSpan.classList.add("text-decoration-line-through");
           todoSpan.classList.remove("text-decoration-none");
           card.style.opacity = 0.3;
-
-          todoSpan.contentEditable = "false";
         } else {
           todoSpan.classList.remove("text-decoration-line-through");
           todoSpan.classList.add("text-decoration-none");
           card.style.opacity = 1;
         }
-        updateTodo(todoId, input.value.trim(), checkBox.checked);
+        if (!initial) {
+          db.updateTodo(todoId, input.value.trim(), checkBox.checked);
+        }
       }
+
       checkBox.addEventListener("click", setDone);
+
       editBtn.addEventListener("click", makeDraftTodo);
-      updateTodo(todoId, input.value.trim(), checkBox.checked);
+      if (!initial) {
+        db.updateTodo(todoId, input.value.trim(), checkBox.checked);
+      }
       // funcion para borrar card
 
       function deleteCard() {
-        deleteTodo(todoId);
-        root.removeChild(card);
+        db.deleteTodo(todoId);
+        todoContainer.removeChild(card);
       }
       deleteCardBtn.addEventListener("click", deleteCard);
     }
-    saveBtn.addEventListener("click", makeFinalTodo);
+
+    saveBtn.addEventListener("click", function () {
+      makeFinalTodo(false);
+    });
   }
 
-  btn.addEventListener("click", todoFactory);
+  btn.addEventListener("click", function () {
+    const todoId = db.addTodo();
+    todoFactory(todoId);
+  });
   root.appendChild(btn);
+  root.appendChild(todoContainer);
+
+  // load card stored in db
+  let savedDbArray = db.getTodos();
+  if (savedDbArray.length != 0) {
+    for (i = 0; i < savedDbArray.length; i++) {
+      todoFactory(
+        savedDbArray[i].id,
+        savedDbArray[i].text,
+        savedDbArray[i].done
+      );
+    }
+  }
 });

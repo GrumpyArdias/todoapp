@@ -1,40 +1,41 @@
-// const db = [
-// 	{ id: 1, text: 'jamon', done: false},
-// 	{ id: 2, text: 'japon', done: true},
-// 	{ id: 3, text: 'monja', done: true},
-// ]
+function createDb() {
+  // Closure
+  let idCount = 0;
+  let records = [];
 
-let db = [];
+  return {
+    // Syntax sugar propety: function()... === propery()
+    getTodos() {
+      const storedDb = JSON.parse(localStorage.getItem("db"));
+      if (!storedDb) return [];
+      idCount = storedDb[storedDb.length - 1]
+        ? storedDb[storedDb.length - 1].id
+        : 0;
+      records = storedDb;
+      return storedDb;
+    },
+    addTodo: function () {
+      idCount++;
+      records.push({ id: idCount, text: "", done: false });
+      localStorage.setItem("db", JSON.stringify(records));
 
-let idCount = 0;
-
-function getTodos() {
-  const storedDb = JSON.parse(localStorage.getItem("db"));
-  if (!storedDb) return [];
-  return storedDb;
+      return idCount;
+    },
+    deleteTodo: function (id) {
+      records = records.filter((todo) => todo.id !== id);
+      localStorage.setItem("db", JSON.stringify(records));
+      return true;
+    },
+    updateTodo: function (id, text, done) {
+      for (let i = 0; i !== records.length; i++) {
+        if (records[i].id === id) {
+          records[i].text = text;
+          records[i].done = done;
+        }
+      }
+      localStorage.setItem("db", JSON.stringify(records));
+    },
+  };
 }
 
-function addTodo() {
-  idCount++;
-
-  db.push({ id: idCount, text: "", done: false });
-  localStorage.setItem("db", JSON.stringify(db));
-
-  return idCount;
-}
-
-function deleteTodo(id) {
-  db = db.filter((todo) => todo.id !== id);
-
-  return true;
-}
-
-function updateTodo(id, text, done) {
-  for (let i = 0; i !== db.length; i++) {
-    if (db[i].id === id) {
-      db[i].text = text;
-      db[i].done = done;
-    }
-  }
-  localStorage.setItem("db", JSON.stringify(db));
-}
+const db = createDb();
