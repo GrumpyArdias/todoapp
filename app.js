@@ -10,14 +10,27 @@ window.addEventListener("load", function () {
   btn.classList.add("btn", "btn-primary");
 
   const todoContainer = document.createElement("div");
+
+  // sortable drag and drop
   Sortable.create(todoContainer, {
     animation: 300,
     easing: "cubic-bezier(0.65, 0, 0.35, 1)",
+    groupd: "todos",
+    dataIdAttr: "data-todo-id",
+    store: {
+      set: function (sortable) {
+        const ids = sortable.toArray();
+        for (let i = 0; i <= ids.length; i++) {
+          db.updateTodo(parseInt(ids[i]), null, null, i);
+        }
+      },
+    },
   });
 
   // Card Creation
   function todoFactory(todoId, text, done) {
     const card = document.createElement("div");
+    card.dataset.todoId = todoId;
     card.classList.add("card", "p-3", "my-3");
 
     const alignerContainerDiv = document.createElement("div");

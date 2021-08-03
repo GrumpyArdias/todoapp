@@ -26,11 +26,18 @@ function createDb() {
       localStorage.setItem("db", JSON.stringify(records));
       return true;
     },
-    updateTodo: function (id, text, done) {
+    updateTodo: function (id, text, done, order) {
       for (let i = 0; i !== records.length; i++) {
         if (records[i].id === id) {
-          records[i].text = text;
-          records[i].done = done;
+          if (text) {
+            records[i].text = text;
+          }
+          if (done !== null) {
+            records[i].done = done;
+          }
+          if (order !== null) {
+            records[i].order = order;
+          }
         }
       }
       localStorage.setItem("db", JSON.stringify(records));
