@@ -10,6 +10,10 @@ window.addEventListener("load", function () {
   btn.classList.add("btn", "btn-primary");
 
   const todoContainer = document.createElement("div");
+  Sortable.create(todoContainer, {
+    animation: 300,
+    easing: "cubic-bezier(0.65, 0, 0.35, 1)",
+  });
 
   // Card Creation
   function todoFactory(todoId, text, done) {
