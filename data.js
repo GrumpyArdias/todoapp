@@ -12,7 +12,11 @@ function createDb() {
         ? storedDb[storedDb.length - 1].id
         : 0;
       records = storedDb;
-      return storedDb;
+
+      return storedDb.sort(function (todoA, todoB) {
+        if (!todoA.order || !todoB.order) return 1;
+        return todoA.order < todoB.order ? 1 : -1;
+      });
     },
     addTodo: function () {
       idCount++;

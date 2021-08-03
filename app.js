@@ -150,7 +150,7 @@ window.addEventListener("load", function () {
   root.appendChild(todoContainer);
 
   // load card stored in db
-  let savedDbArray = db.getTodos();
+  const savedDbArray = db.getTodos();
   if (savedDbArray.length != 0) {
     for (i = 0; i < savedDbArray.length; i++) {
       todoFactory(
